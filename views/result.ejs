@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Malware Detector</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+
+
+	<div class="container">
+			<section class="header">
+					<h2><a href="/">HackElites</a> <span>ANALYZER</span></h2>
+			</section>
+
+			<section class="content">
+
+						<% if(overall.score <= 0) { %>
+
+							<h4 style="background:green; width: 40%; color: #fff; margin-bottom: 15px">No Malware Detected</h4>
+							<p class="c1">Status: <span style="background:green; width:20%; color: #fff">Safe</span></p>
+
+						<% } else { %>
+
+							<h4 style="background:red; width: 40%; color: #fff; margin-bottom: 15px">Malware Detected</h4>
+							<p class="c1">Status: <span style="background:green; width:20%; color: #fff;">Unsafe</span></p>
+
+						<% } %>
+
+					<h3>Overall Result</h3>
+
+						<% if(typeof(overall) != 'undefined') { %>
+
+							<table border="1">
+									
+									<tr>
+										<td>Score</td>
+										<td><%- overall.score %></td>
+									</tr>
+									<tr>
+										<td>Malicious Status</td>
+										<td><%- overall.malicious %></td>
+									</tr>
+									<tr>
+										<td>Verdicts</td>
+										<td><%- overall.hasVerdicts %></td>
+									</tr>
+
+							</table>
+
+
+						<% } %>
+
+						<h3>URL Scan Result</h3>
+						<% if(typeof(uscan) != 'undefined') { %>
+
+							<table border="1">
+									
+									<tr>
+										<td>Score</td>
+										<td><%- uscan.score %></td>
+									</tr>
+									<tr>
+										<td>Brands</td>
+										<td><%- uscan.brands %></td>
+									</tr>
+									<tr>
+										<td>Categories</td>
+										<td><%- uscan.categories %></td>
+									</tr>
+									<tr>
+										<td>Malicious Status</td>
+										<td><%- uscan.malicious %></td>
+									</tr>
+									<tr>
+										<td>Verdicts</td>
+										<td><%- uscan.hasVerdicts %></td>
+									</tr>
+
+							</table>
+
+
+						<% } %>
+
+
+						<h3>Links Associated with URL</h3>
+
+
+						<% if(typeof(uscan) != 'undefined') { %>
+								<% links.forEach((lnk) => { %>
+									<p class="ln"><%- lnk.href %></p>
+
+							<% }) %>
+
+						<% } %>
+
+			</section>
+
+			<section class="footer">
+					<h3>HackElites Sandbox URL Analyzer &copy 2023</h3>
+			</section>
+
+	</div>
+
+</body>
+</html>
