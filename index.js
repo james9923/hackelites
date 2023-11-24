@@ -2,8 +2,9 @@
 
 	const express = require('express'),
 	      ejs = require('ejs'),
-	      urlscan = require('urlscan-api')
+	      urlscan = require('urlscan-api'),
 	      fs = require('fs'),
+	      path = require('path'),
           app = express();
 
 
@@ -15,7 +16,7 @@
 
 
 	app.get('/', (req, res) => {
-			res.render('index');
+			res.render(path.join(__dirname,'/views/index'));
 	})
 
 	app.post('/', (req, res) => {
@@ -37,7 +38,7 @@
 
 
 			setTimeout(()=> {
-				res.render('process', {r1});
+				res.render(path.join(__dirname, '/views/process'), {r1});
 			}, 15000);
 			
 	})
@@ -63,7 +64,7 @@
 			})
 
 			setTimeout(()=> {
-				res.render('result', {overall, uscan,engines,links});
+				res.render(path.join(__dirname,'/views/result'), {overall, uscan,engines,links});
 			}, 20000);
 
 
